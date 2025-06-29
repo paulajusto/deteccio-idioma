@@ -1,3 +1,40 @@
+# Identificació Automàtica d'Idiomes Europeus Mitjançant Trigrames
+
+Aquest projecte implementa un sistema de detecció de l’idioma de frases escrites en sis llengües europees: anglès, espanyol, alemany, italià, neerlandès i francès. La classificació es basa en models de llengua construïts amb trigrames de caràcters, combinats amb una tècnica de suavització per evitar el problema de les probabilitats nul·les.
+
+## Objectius
+
+- Processar i netejar corpus multilingües per entrenar models de trigrames.
+- Aplicar la tècnica de **suavització de Lidstone** per gestionar trigrames no observats.
+- Identificar l’idioma de cada frase d’un conjunt de test, calculant la probabilitat logarítmica segons els models entrenats.
+- Generar una matriu de confusió per avaluar el rendiment del sistema i analitzar les causes dels errors de classificació.
+
+## Conjunt de Dades
+
+S’han utilitzat textos en sis idiomes diferents, dividits en corpus d’entrenament i test. Cada frase del test ha estat considerada com la unitat mínima d’identificació.
+
+## Preprocessament
+
+Per garantir la coherència en la creació dels trigrames, s’ha aplicat un preprocessament uniforme als corpus:
+
+1. **Eliminació de dígits** per evitar soroll.
+2. **Conversió del text a minúscules** per unificar criteris.
+3. **Normalització dels espais en blanc** substituint espais múltiples i tabulacions per un únic espai.
+4. **Concatenació de línies** utilitzant dos espais després d’un punt per marcar el final de les frases.
+
+## Creació dels Trigrames
+
+- S’han generat trigrames de caràcters a partir dels corpus d’entrenament.
+- S’ha aplicat un **filtrat**, conservant únicament els trigrames amb una freqüència ≥ 5 per centrar-se en els patrons més representatius de cada idioma.
+
+## Model de Llengua i Suavització
+
+Per evitar assignar probabilitats nul·les als trigrames desconeguts en el test, s’ha utilitzat la tècnica de **Lidstone** amb λ = 0,5. Això ha permès atribuir una petita probabilitat a qualsevol trigram absent del conjunt d’entrenament sense penalitzar en excés els trigrames comuns.
+
+La probabilitat de cada trigram es calcula amb la fórmula:
+
+P(trigrama) = (freq(trigrama) + λ) / (N + λ * B)
+
 on:
 - N = nombre total de trigrames en el model
 - B = nombre total de trigrames únics
