@@ -72,14 +72,6 @@ La precisió global (**accuracy**) i la matriu de confusió mostren una alta cap
 - seaborn
 - Matplotlib
 
-## Reproducció de l’Experiment
-
-1. Instal·lar les dependències necessàries (`pip install -r requirements.txt`).
-2. Col·locar els fitxers de text del corpus a la ruta especificada.
-3. Executar els scripts de preprocessament i entrenament.
-4. Processar el corpus de test i generar la matriu de confusió.
-5. Revisar la precisió i l’anàlisi dels errors.
-
 ## Llicència
 
 Aquest projecte s’ha desenvolupat amb finalitats acadèmiques. Per a ús productiu o comercial, es recomana una revisió exhaustiva i una adaptació del model.
